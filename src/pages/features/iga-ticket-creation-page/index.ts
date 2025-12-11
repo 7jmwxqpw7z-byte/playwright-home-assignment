@@ -1,0 +1,1 @@
+export { IgaTicketCreationPage } from './iga-ticket-creation-page';
