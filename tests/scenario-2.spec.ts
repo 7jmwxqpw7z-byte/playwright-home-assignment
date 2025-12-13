@@ -17,12 +17,16 @@ test('Create new Ticket', async ({ page }) => {
         await loginPage.setUserName('user1.training');
         await loginPage.setPassword('SecureRandomPassword1!');
         await loginPage.clickLoginButton();
-        await loginPage.terminateSession();
+        // await loginPage.terminateSession();
+
     });
 
     await test.step('Step 2: Switch to Classic UI', async () => {
 
-        // await page.locator(`//button[@aria-label='Classic']`).click();
+        await page.waitForTimeout(2000);
+        await toolBar.clickTooltipBeacon();
+        await page.waitForTimeout(2000); // Adding a small wait to ensure tooltip is handled
+        await toolBar.clickTooltipBeacon(); // ensure that beacon disappears
         await toolBar.clickSwitchButton();
         await toolBar.verifyAgentUiButtonIsVisible();
     });

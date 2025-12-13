@@ -21,6 +21,10 @@ export class LoginPage {
     }
 
     async terminateSession(): Promise<void> {
-        await this.locator.locator(`//input[@type='button' and @value='Terminate the other session']`).click();
+        await this.locator.locator(`//input[@name='kickoutButton']`).click();
+    }
+
+    async checkIfTerminateSessionIsVisible(): Promise<boolean> {
+        return await this.locator.locator(`//input[@name='kickoutButton']`).isVisible();
     }
 }

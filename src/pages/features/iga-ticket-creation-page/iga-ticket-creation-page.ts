@@ -22,4 +22,17 @@ export class IgaTicketCreationPage {
         await this.locator.locator(`//li[@data-value='${ticketType}']']`).click();
     }
 
+    async selectCustomer(customerName: string): Promise<void> {
+        await this.locator.locator(`//div[@class="dc-inner-grid ng-star-inserted"][2]//esm-ui-dropdown-list[@data-test='reference-dropdown-7793318']`).click();
+        await this.locator.locator(`//ul[@role='listbox']//li[.//span[text()='${customerName}']]`).click();
+    }
+
+    async selectTeam(teamName: string): Promise<void> {
+        await this.locator.locator(`//label[text()=' Team ']/ancestor::div[contains(@class, 'e-control-wrapper')][1]`).click();
+        await this.locator.locator(`//ul[@role='listbox']//li[.//span[text()='${teamName}']]`).click();
+    }
+
+    async saveTicket(): Promise<void> {
+        await this.locator.locator(`//button[@data-test='save-datacard-button']`).click();
+    }
 }

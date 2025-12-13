@@ -18,9 +18,9 @@ test('Create new Ticket', async ({ page }) => {
     await page.locator(`//input[@data-test='simple-input-7792739']`).fill('Test Ticket Summary');
     await page.locator(`//label[.//span[normalize-space()='Ticket type']]/parent::div[@role='combobox']`).click();
     await page.locator(`//li[@data-value='Incident']`).click();
-    await page.locator(`//label[normalize-space()='Customer']`).click();
+    await page.locator(`//div[@class="dc-inner-grid ng-star-inserted"][2]//esm-ui-dropdown-list[@data-test='reference-dropdown-7793318']`).click();
     await page.locator(`//div[contains(@class,'item-template')]//span[normalize-space()='Admin Customer']/parent::div`).click();
-    await page.locator(`//label[contains(@class,'e-float-text') and normalize-space()='Team']`).click();
+    await page.locator(`//label[text()=' Team ']/ancestor::div[contains(@class, 'esm-ui-control-wrapper')][1]`).click();
     await page.locator(`//div[@id='reference-dropdown-option-7795676-10203063']`).click();
 
     await page.locator(`//button[.//span[normalize-space()='Save']]`).click();
