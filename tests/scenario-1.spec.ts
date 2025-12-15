@@ -5,7 +5,7 @@ import { IgaTicketCreationPage } from '../src/pages/features/iga-ticket-creation
 
 
 test('Create new Ticket', async ({ page }) => {
-    const toolBar = IgaToolBarPage.of(page.locator(`//iga-tool-bar`));
+    const toolBar = IgaToolBarPage.of(page.locator(`//div[@class='esm-header']`));
     const loginPage = LoginPage.of(page.locator(`//div[@id='kc-form-wrapper']`));
     const menuSection = MenuSectionPage.of(page.locator(`//esm-ui-menu-section`));
     const contextSection = ContextSectionPage.of(page.locator(`//esm-ui-context-section`));
@@ -15,9 +15,11 @@ test('Create new Ticket', async ({ page }) => {
     await loginPage.setUserName('user1.training');
     await loginPage.setPassword('SecureRandomPassword1!');
     await loginPage.clickLoginButton();
-    await loginPage.terminateSession();
+    // await loginPage.terminateSession();
 
-    await toolBar.clickSwitchButton();
+    // await toolBar.clickSwitchButton(); // TODO: switch by element in toolBar-page is not working, need to analyze
+    await page.locator(`//button[@aria-label='Classic']`).click();
+    await toolBar.verifyAgentUiButtonIsVisible();
 
     await menuSection.expandeParentTreeItem('Service Desk Agent');
     await menuSection.selectTreeItem('06. Open Tickets');

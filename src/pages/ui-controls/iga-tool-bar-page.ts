@@ -10,7 +10,7 @@ export class IgaToolBarPage {
     }
 
     async clickSwitchButton(): Promise<void> {
-        await this.locator.locator("//div[@data-test='header']//button[@aria-label='Classic']").click();
+        await this.locator.locator("//button[@aria-label='Classic']").click();
     }
 
     async verifyAgentUiButtonIsVisible(): Promise<void> {

@@ -19,7 +19,7 @@ export class IgaTicketCreationPage {
 
     async selectTicketType(ticketType: string): Promise<void> {
         await this.locator.locator(`//span[text()='Ticket type']/ancestor::div[contains(@class,'e-ddl')]`).click();
-        await this.locator.locator(`//li[@data-value='${ticketType}']']`).click();
+        await this.locator.locator(`//li[@data-value='${ticketType}']`).click();
     }
 
     async selectCustomer(customerName: string): Promise<void> {

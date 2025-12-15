@@ -12,6 +12,7 @@ This file gives actionable, repository-specific guidance for AI coding agents wo
 - **Locator usage:** Methods call `this.locator.locator(<xpath>)` to scope selectors. Maintain scoping when adding new methods. Avoid direct `page.locator` in tests; use page objects.
 - **Selectors:** Codebase heavily uses XPath selectors (see `tests/scenario.spec.ts` and `src/pages/*`). When changing selectors, prefer minimal, stable attributes, but mirror the project's XPath-first style unless refactoring broadly. Watch for typos (e.g., extra `]` in `iga-ticket-creation-page.ts`).
 - **Assertions:** Use Playwright `expect(...)` inside page objects for page-level checks (see `content-section-page.ts`). Keep assertions encapsulated in page objects.
+- **Test structure:** Prefer page objects over direct locators for new tests. Use `test.step` for grouping actions in tests (see `scenario-2.spec.ts`).
 
 ## Developer workflows & commands
 - **Run tests:** No `scripts` are defined in `package.json`. Use the Playwright CLI from the repo root, for example:
@@ -28,6 +29,7 @@ This file gives actionable, repository-specific guidance for AI coding agents wo
 - **Hard-coded credentials & external URL:** Tests navigate to `https://qatestenv.efectecloud-demo.com/itsm` and include plaintext credentials in specs. Avoid committing secrets; move credentials to `.env` and update tests to read from `process.env` if changing auth flows.
 - **Mixed test styles:** Some tests use page objects (e.g., `scenario-2.spec.ts`), others direct locators (e.g., `scenario.spec.ts`). Prefer page objects for new tests.
 - **No npm scripts or CI hooks:** Add `scripts` like `"test": "playwright test"` if you want convenient commands for contributors/CI.
+- **Class naming:** Some files have mismatched class names (e.g., `content-section-page.ts` exports `ContextSectionPage`). Use the exported name in imports.
 
 ## Integration points & external dependencies
 - **External app under test:** Tests run against a hosted test environment (see `tests/*.spec.ts`). Be mindful of network flakiness and consider adding retries or mocks if introducing more brittle checks.
